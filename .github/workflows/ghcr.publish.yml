@@ -7,9 +7,6 @@ name: Publish Docker Image to GHCR
         description: Docker image tag to publish to GHCR
         required: true
         default: dev
-  push:
-    tags:
-      - 'v*'
 
 env:
   IMAGE_NAME: garmin-fetch-data
