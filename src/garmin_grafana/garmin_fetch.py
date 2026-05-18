@@ -757,7 +757,18 @@ def purge_existing_strength_exercise_sets(activity_id):
     previous series first, InfluxDB keeps the stale and corrected rows in
     parallel because the tags no longer match.
     """
-    if INFLUXDB_VERSION != '1' or not hasattr(influxdbclient, 'delete_series'):
+    if INFLUXDB_VERSION != '1':
+        logging.warning(
+            f"InfluxDB version {INFLUXDB_VERSION} does not support purging StrengthExerciseSet series for activity {activity_id}. "
+            "Applying the default refresh behavior; edited exercises may produce duplicated rows."
+        )
+        return True
+
+    if not hasattr(influxdbclient, 'delete_series'):
+        logging.warning(
+            f"InfluxDB client does not support purging StrengthExerciseSet series for activity {activity_id}. "
+            "Applying the default refresh behavior; edited exercises may produce duplicated rows."
+        )
         return True
 
     try:
