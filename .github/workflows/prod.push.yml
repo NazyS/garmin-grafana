@@ -1,22 +1,7 @@
-name: Build and Push Multi-Architecture Docker Image (Latest Build)
+name: Build and Push Multi-Architecture Docker Image (Manual)
 
-on:
-  push:
-    branches:
-      - main
-      - auth-fix
-    paths:
-      - 'src/garmin_grafana/garmin_fetch.py'
-      - 'src/garmin_grafana/influxdb_exporter.py'
-      - 'src/garmin_grafana/garmin_bulk_importer.py'
-      - 'src/garmin_grafana/fit_activity_importer.py'
-      - 'src/garmin_grafana/__init__.py'
-      - 'compose-example.yml'
-      - 'pyproject.toml'
-      - 'Dockerfile'
-      - '.python-version'
-      - 'uv.lock'
-      - '.github/workflows/prod.push.yml'
+"on":
+  workflow_dispatch:
 
 env:
   IMAGE_NAME: garmin-fetch-data

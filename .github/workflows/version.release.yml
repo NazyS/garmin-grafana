@@ -1,13 +1,16 @@
-name: Build and Push Docker Image on Version Release
+name: Build and Push Docker Image on Version Release (Manual)
 
-on:
-  push:
-    tags:
-      - 'v*'  # matches version release only
+"on":
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Version tag to use for the Docker image and Helm chart
+        required: true
+        default: v0.0.0-dev
 
 env:
   IMAGE_NAME: garmin-fetch-data
-  IMAGE_TAG: ${{ github.ref_name }}
+  IMAGE_TAG: ${{ inputs.release_tag }}
   IMAGE_REPO: thisisarpanghosh
 
 jobs:
