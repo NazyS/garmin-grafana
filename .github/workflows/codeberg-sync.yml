@@ -1,5 +1,8 @@
-name: Codeberg sync (manual)
-"on":
+name: Codeberg sync
+on:
+  push:
+    branches:
+      - '**'
   workflow_dispatch:
 
 jobs:
